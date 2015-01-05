@@ -1,0 +1,12 @@
+load '../newfeatures/genfeatures_adj_max_double.mat';
+
+disp('now extracting reduced features - removed xy response');
+
+for i=1:715
+    a = features{i}(:,1:36);
+    %b = features{i}(:,22:44);
+    %c = horzcat(a,b);
+    %features{i} = c;
+    features{i} = a;
+end
+  

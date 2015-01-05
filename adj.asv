@@ -1,0 +1,6 @@
+for imageno=1:10
+    adjmat = image_data(imageno).adjmat;
+    spixno = size(adjmat);
+    spixno = spixno(1,1);
+    
+end

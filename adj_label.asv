@@ -1,0 +1,37 @@
+% most probable adj feature allocation
+load '../homework4/genfeatures.mat';
+
+for f = 1:numel(imsegs)
+    disp(numel(imsegs)-f);
+    numspix = imsegs(f).nsegs;
+   
+    for i = 1:numspix
+        
+    
+      adjcell = find(imsegs(f).adjmat(i,:)== 1);
+        
+            kw = numel(adjcell);
+            az = zeros(1,kw);  
+            
+            for op = 1:kw
+            nbspix = adjcell(op);
+            az(1,op) = imsegs(f).super_pixel_labels(nbspix);
+            end
+            xt = unique(az);
+            ct = numel(xt);
+            pct = zeros(1,ct);
+            
+            for yu=1:ct
+            pct(1,yu) = numel(find(az == xt(yu)));
+            end
+            sdf = find(pct == max(pct));
+            sdf = sdf(1);
+            
+            spixlbl = xt(sdf);
+            imsegs(f).super_pixel_labels(i) = spixlbl;
+    end
+    
+end
+
+%end
+  
